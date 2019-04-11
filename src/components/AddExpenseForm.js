@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Col, Button, Form, FormGroup, Label, Input } from "reactstrap";
+import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 
 const AddExpenseForm = ({ expenses, setExpenses }) => {
   const [newExpense, setNewExpense] = useState({ name: "", value: 0 });
@@ -10,14 +10,13 @@ const AddExpenseForm = ({ expenses, setExpenses }) => {
       <Form
         style={{
           padding: "30px",
-          backgroundColor: "lightgray",
+          backgroundColor: "#bcbec0",
           textAlign: "left",
           marginTop: "25px"
         }}
       >
         <FormGroup>
           <Label for="name">Item</Label>
-
           <Input
             id="name"
             value={newExpense.name}
@@ -30,7 +29,7 @@ const AddExpenseForm = ({ expenses, setExpenses }) => {
           />
         </FormGroup>
         <FormGroup>
-          <Label for="name">Amount</Label>
+          <Label for="name">Amount / month</Label>
           <Input
             id="name"
             value={newExpense.value}

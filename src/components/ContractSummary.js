@@ -1,36 +1,91 @@
-import React from "react";
-import { Button } from "reactstrap";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Button, Spinner } from "reactstrap";
+import ContractSummaryCard from "./ContractSummaryCard";
 
 const ContractSummary = ({ updateIncome, setHasContractBeenScanned }) => {
-  return (
-    <div>
-      <div>
-        <h1>Summary:</h1>
-        <p>Client: ABC Company</p>
-        <p>Services: Create Corporate Identity</p>
-        <p>Start Date: 5/1/2019</p>
-        <p>Duration: 3 months</p>
-        <p>Completion Date: 8/1/2019</p>
-        <p>Payment Terms: $25/hour, 40 hours/week, payable monthly</p>
-        <p>Project Monthly Income: $4000</p>
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 3500);
+  });
+
+  if (isLoading) {
+    return (
+      <div style={{ marginTop: "200px" }}>
+        <Spinner style={{ width: "10rem", height: "10rem" }} type="grow" />
+        <h4>Analyzing your document...</h4>
       </div>
-      <Button
-        color="success"
-        onClick={() => {
-          updateIncome();
-        }}
-      >
-        Cool!
-      </Button>
-      <Button
-        color="danger"
-        onClick={() => {
-          setHasContractBeenScanned(false);
-        }}
-      >
-        Nevermind! Remove Contract
-      </Button>
+    );
+  }
+
+  return (
+    <div style={{ marginTop: "100px" }}>
+      <div>
+        <h1>Contract Summary:</h1>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            width: "650px",
+            margin: "auto"
+          }}
+        >
+          <ContractSummaryCard title="Overview">
+            <p>
+              <b>Client:</b> ABC Company
+            </p>
+            <p>
+              <b>Services:</b> Create Corporate Identity
+            </p>
+          </ContractSummaryCard>
+          <ContractSummaryCard title="Duration">
+            <p>
+              <b>Start Date:</b> 5/1/2019
+            </p>
+            <p>
+              <b>Duration:</b> 3 months
+            </p>
+            <p>
+              <b>Completion Date:</b> 8/1/2019
+            </p>
+          </ContractSummaryCard>
+          <ContractSummaryCard title="Payment">
+            <p>
+              <b>Terms:</b> $25/hour, 40 hours/week, payable monthly
+            </p>
+            <p>
+              <b>Projected Monthly Income:</b> $4000
+            </p>
+          </ContractSummaryCard>
+        </div>
+      </div>
+      <div style={{ marginTop: "25px" }}>
+        <Button
+          color="success"
+          style={{
+            border: "none",
+            marginRight: "40px"
+          }}
+          onClick={() => {
+            updateIncome();
+          }}
+        >
+          Add Contract
+        </Button>
+        <Button
+          color="danger"
+          style={{
+            border: "none"
+          }}
+          onClick={() => {
+            setHasContractBeenScanned(false);
+          }}
+        >
+          Remove Contract
+        </Button>
+      </div>
     </div>
   );
 };

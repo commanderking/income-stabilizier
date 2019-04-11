@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { BarChart, Bar, XAxis, YAxis } from "recharts";
 
-// hardcode for speed - ideally would calculate how many days left in month, then use ticks to predict the remaining months
+// hardcode for speed (numbers refer to how many days until that month) - ideally would calculate how many days left in month, then use ticks to predict the remaining months
 const ticksToMonths = {
+  0: "Today",
   20: "May",
   50: "Jun",
   80: "Jul",
@@ -44,7 +45,7 @@ const ProgressChart = ({ daysRemaining }) => {
     >
       <XAxis
         type="number"
-        ticks={[20, 50, 80, 110, 140, 170, 200, 230, 260, 290, 320, 350]}
+        ticks={[0, 20, 50, 80, 110, 140, 170, 200, 230, 260, 290, 320, 350]}
         tickFormatter={tick => {
           return ticksToMonths[tick];
         }}
