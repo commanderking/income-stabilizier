@@ -1,14 +1,5 @@
 import React from "react";
-import {
-  Col,
-  Button,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  FormText,
-  Collapse
-} from "reactstrap";
+import { Col, Button, Form, FormGroup, Input, FormText } from "reactstrap";
 
 const ContractScanner = ({
   hasContractBeenScanned,

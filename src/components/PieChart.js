@@ -27,7 +27,7 @@ const renderActiveShape = (props, doomsDate) => {
   const textAnchor = cos >= 0 ? "start" : "end";
   return (
     <g>
-      <text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill}>
+      <text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill} fontSize={22}>
         {doomsDate}
       </text>
       <Sector
@@ -73,8 +73,6 @@ const renderActiveShape = (props, doomsDate) => {
   );
 };
 
-//         {`(${Math.round(percent * 100)}%)`}
-
 export default class Example extends PureComponent {
   state = {
     activeIndex: 0
@@ -89,18 +87,18 @@ export default class Example extends PureComponent {
   render() {
     const { expensesChartData, doomsDate } = this.props;
     return (
-      <PieChart width={400} height={250} style={{ width: "margin-auto" }}>
+      <PieChart width={500} height={325} style={{ width: "margin-auto" }}>
         <Pie
           activeIndex={this.state.activeIndex}
           activeShape={props => {
             return renderActiveShape(props, doomsDate);
           }}
           data={expensesChartData}
-          cx={200}
-          cy={100}
-          innerRadius={60}
-          outerRadius={80}
-          fill="#8884d8"
+          cx={225}
+          cy={175}
+          innerRadius={80}
+          outerRadius={105}
+          fill="#00416b"
           dataKey="value"
           onMouseEnter={this.onPieEnter}
         />

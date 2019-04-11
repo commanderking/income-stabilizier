@@ -10,7 +10,7 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className="App">
+        <div className="App" style={{ color: "#00416b" }}>
           <Route path="/" exact component={Dashboard} />
           <Route path="/contract" component={ContractAgreement} />
         </div>

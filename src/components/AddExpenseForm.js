@@ -1,14 +1,5 @@
 import React, { useState } from "react";
-import {
-  Col,
-  Button,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  FormText,
-  Collapse
-} from "reactstrap";
+import { Col, Button, Form, FormGroup, Label, Input } from "reactstrap";
 
 const AddExpenseForm = ({ expenses, setExpenses }) => {
   const [newExpense, setNewExpense] = useState({ name: "", value: 0 });
@@ -16,62 +7,63 @@ const AddExpenseForm = ({ expenses, setExpenses }) => {
   return (
     <div style={{ padding: "30px" }}>
       <h5 style={{ textAlign: "left" }}>Add an Expense</h5>
-      <Form>
-        <FormGroup row>
-          <Label for="name" sm={2}>
-            Item
-          </Label>
-          <Col sm={10}>
-            <Input
-              id="name"
-              value={newExpense.name}
-              onChange={event => {
-                setNewExpense({
-                  ...newExpense,
-                  name: event.target.value
-                });
-              }}
-            />
-          </Col>
+      <Form
+        style={{
+          padding: "30px",
+          backgroundColor: "lightgray",
+          textAlign: "left",
+          marginTop: "25px"
+        }}
+      >
+        <FormGroup>
+          <Label for="name">Item</Label>
+
+          <Input
+            id="name"
+            value={newExpense.name}
+            onChange={event => {
+              setNewExpense({
+                ...newExpense,
+                name: event.target.value
+              });
+            }}
+          />
         </FormGroup>
-        <FormGroup row>
-          <Label for="name" sm={2}>
-            Amount
-          </Label>
-          <Col sm={10}>
-            <Input
-              id="name"
-              value={newExpense.value}
-              onChange={event => {
-                setNewExpense({
-                  ...newExpense,
-                  value: Number(event.target.value)
-                });
-              }}
-            />
-          </Col>
+        <FormGroup>
+          <Label for="name">Amount</Label>
+          <Input
+            id="name"
+            value={newExpense.value}
+            onChange={event => {
+              setNewExpense({
+                ...newExpense,
+                value: Number(event.target.value)
+              });
+            }}
+          />
         </FormGroup>
-        <FormGroup row>
-          <Col sm={12}>
-            <Button
-              onClick={() => {
-                const newExpenseKey = newExpense.name
-                  .toLowerCase()
-                  .replace(" ", "_");
-                setExpenses({
-                  ...expenses,
-                  [newExpenseKey]: {
-                    key: newExpenseKey,
-                    text: newExpense.name,
-                    value: newExpense.value
-                  }
-                });
-              }}
-            >
-              Add Expense
-            </Button>
-          </Col>
-        </FormGroup>
+        <Button
+          style={{
+            width: "100%",
+            backgroundColor: "#95d4e9",
+            border: "none"
+          }}
+          onClick={() => {
+            const newExpenseKey = newExpense.name
+              .toLowerCase()
+              .replace(" ", "_");
+            setExpenses({
+              ...expenses,
+              [newExpenseKey]: {
+                key: newExpenseKey,
+                text: newExpense.name,
+                value: newExpense.value
+              }
+            });
+          }}
+        >
+          <span style={{ color: "#00416b" }}>ADD EXPENSE</span>
+        </Button>
       </Form>
     </div>
   );

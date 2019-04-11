@@ -10,6 +10,7 @@ import PieChart from "../components/PieChart";
 import ExpensesEditForm from "../components/ExpensesEditForm";
 import AddExpenseForm from "../components/AddExpenseForm";
 import ProgressChart from "../components/ProgressChart";
+import MoneyDisplay from "../components/MoneyDisplay";
 
 const initialExpenses = {
   rent: { key: "rent", text: "Rent", value: 1450 },
@@ -29,7 +30,6 @@ const Dashboard = () => {
   useEffect(() => {
     const storedExpenses = sessionStorage.getItem("expenses");
     const income = sessionStorage.getItem("income");
-    console.log("storedExpenses", storedExpenses);
 
     if (!storedExpenses) {
       sessionStorage.setItem("expenses", JSON.stringify(initialExpenses));
@@ -53,7 +53,6 @@ const Dashboard = () => {
 
   const doomsDate = `${month} ${ordinalDate}`;
   const expensesChartData = transformExpenseDataForPieChart(expenses);
-  console.log("expensesChartData", expensesChartData);
   return (
     <div>
       <div
@@ -68,26 +67,22 @@ const Dashboard = () => {
             doomsDate={doomsDate}
           />
         </div>
-        <div id="expenses" style={{ margin: "auto", padding: "30px" }}>
-          <h3>Monthly Expenses: </h3> <h3>{`$${monthlyExpense}`}</h3>
-        </div>
-        <div id="savings" style={{ padding: "30px", margin: "auto" }}>
-          <h3>Total Savings:</h3>
-          <h3>{`$${savings}`}</h3>
-        </div>
-        <div id="income" style={{ padding: "30px", margin: "auto" }}>
-          <h3>Pending Income</h3>
-          <h3>{`$${income}`}</h3>
-        </div>
+        <MoneyDisplay
+          title="EXPENSES"
+          prefix="MONTHLY"
+          amount={monthlyExpense}
+        />
+        <MoneyDisplay title="SAVINGS" prefix="TOTAL" amount={savings} />
+        <MoneyDisplay title="INCOME" prefix="PENDING" amount={income} />
       </div>
       <div style={{ padding: "30px" }}>
-        <h4>Your Runway:</h4>
+        <h4 style={{ textAlign: "left", marginLeft: "65px" }}>Your Runway:</h4>
         <ProgressChart daysRemaining={daysRemaining} />
       </div>
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "1fr 2fr"
+          gridTemplateColumns: "1fr 3fr"
         }}
       >
         <AddExpenseForm expenses={expenses} setExpenses={setExpenses} />
@@ -98,11 +93,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-
-/*
-      <div id="summary" style={{ padding: "30px" }}>
-        <span>You have until</span>
-        <h1>{doomsDate}</h1>
-        <div>Days remaining: {daysRemaining}</div>
-      </div>
-      */

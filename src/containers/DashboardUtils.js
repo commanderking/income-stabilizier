@@ -3,7 +3,6 @@ import moment from "moment";
 
 export const sumExpenses = expenses => {
   const expensesValues = _.map(expenses, expense => expense.value);
-  console.log("expensesValues", expensesValues);
   return _.sum(expensesValues);
 };
 
